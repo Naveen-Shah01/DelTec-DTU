@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+    <color name="color_one">#21b959</color>
+    <color name="color_one_dark">#218f5a</color>
+
+    <color name="color_one_light_one">#8AC1A7</color>
+    <color name="color_one_light_two">#e5f2ef</color>
+    <color name="color_one_dark_one">#11683E</color>
+
+
+
+    <color name="link_color">#0000EE</color>
+    <color name="color_two">#010001</color>
+    <color name="color_two_light">#a2a2a2</color>
+
+    <color name="shimmer_color">#dddddd</color>
+
+
+</resources>

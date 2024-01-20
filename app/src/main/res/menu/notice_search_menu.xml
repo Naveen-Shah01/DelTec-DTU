@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/logOut"
+        android:icon="@drawable/log_out_icon"
+        android:title="Log out"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/notice_search"
+        android:icon="@drawable/search_icon"
+        android:title="Search Notice"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+</menu>

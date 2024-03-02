@@ -25,8 +25,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.dtu.deltecdtu.NoticeClickListener
 import com.dtu.deltecdtu.R
-import com.dtu.deltecdtu.Util.Response
-import com.dtu.deltecdtu.Util.Utility
+import com.dtu.deltecdtu.util.Response
+import com.dtu.deltecdtu.util.Utility
 import com.dtu.deltecdtu.adapter.DTUNoticeAdapter
 import com.dtu.deltecdtu.databinding.FragmentNoticesBinding
 import com.dtu.deltecdtu.model.ExtendedNoticeModel

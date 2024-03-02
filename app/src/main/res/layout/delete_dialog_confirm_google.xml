@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/_8sdp"
+    app:cardElevation="@dimen/_8sdp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20sdp">
+
+        <TextView
+            android:id="@+id/tvLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Confirm Delete?"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_11sdp"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:clickable="false"
+            android:gravity="start"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:text="@string/delete_account_warning_text_one"
+            android:textColor="@color/color_one_dark_one"
+            android:textSize="@dimen/_14ssp"
+            app:backgroundTint="@color/color_one_light_two"
+            app:cornerRadius="@dimen/_3sdp"
+            app:icon="@drawable/alert_icon"
+            app:iconSize="@dimen/_24sdp"
+            app:iconTint="@color/color_one_dark"
+            app:layout_constraintEnd_toEndOf="@id/tvLogout"
+            app:layout_constraintStart_toStartOf="@id/tvLogout"
+            app:layout_constraintTop_toBottomOf="@id/tvLogout" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btLogOutCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_35sdp"
+            android:layout_marginTop="@dimen/_19sdp"
+            android:backgroundTint="#D6D6D6"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Cancel"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp"
+            app:cornerRadius="@dimen/_4sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/warning"
+
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btLogOutConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_19sdp"
+            android:layout_marginEnd="@dimen/_35sdp"
+            android:backgroundTint="@color/color_one_dark"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/delete_text"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            app:cornerRadius="@dimen/_4sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/warning" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

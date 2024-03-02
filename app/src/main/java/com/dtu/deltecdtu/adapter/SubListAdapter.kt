@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dtu.deltecdtu.SubListNoticeClickListener
-import com.dtu.deltecdtu.Util.Utility
+import com.dtu.deltecdtu.util.Utility
 import com.dtu.deltecdtu.databinding.ItemNoticeBinding
 import com.dtu.deltecdtu.model.SubListModel
 

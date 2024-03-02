@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gray">#605D5D</color>
 
 
     <color name="color_one">#21b959</color>
@@ -19,5 +20,15 @@
 
     <color name="shimmer_color">#dddddd</color>
 
+
+    <color name="tab_background_color">#E7F1EC</color>
+    <color name="pale_red">#D57A7A</color>
+    <color name="blue">#273B94</color>
+    <color name="dark_blue">#0F237E</color>
+    <color name="red">#FF0000</color>
+
+    <color name="selectedColor">#218f5a</color>
+
+    <color name="unselectedColor">#FFFFFFFF</color>
 
 </resources>

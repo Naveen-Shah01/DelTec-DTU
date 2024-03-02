@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    android:focusableInTouchMode="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        tools:context=".fragments.ProfileFragment">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tbToolbarProfile"
+            android:layout_width="match_parent"
+            android:layout_height="?android:actionBarSize"
+            android:background="@color/color_one_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Notices"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20ssp" />
+
+            <ImageButton
+                android:id="@+id/iBtnLogoutProfile"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:layout_gravity="center|end"
+                android:layout_marginEnd="12dp"
+                android:background="@null"
+                android:contentDescription="Sign out"
+                android:padding="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/log_out_icon"
+                app:tint="@color/white" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <TextView
+            android:id="@+id/tvErrorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:text="Oops!!\nSome error occurred.\nPlease reopen the page"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/clRoot"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tbToolbarProfile">
+
+
+            <androidx.cardview.widget.CardView
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/cdProfileView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="#F6F6F6"
+                app:cardCornerRadius="8dp"
+                app:cardUseCompatPadding="true"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/iBtnChooseImage"
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_120sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="Profile Image of User"
+                        android:padding="2dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/avatar_1"
+                        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                        app:strokeColor="@color/color_one_dark_one"
+                        app:strokeWidth="2dp" />
+
+                    <TextView
+                        android:id="@+id/tvAddImageText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:text="click on icon to add image"
+                        android:textColor="#808080"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/iBtnChooseImage" />
+
+                    <ProgressBar
+                        android:id="@+id/pbProgressBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:indeterminateTint="@color/color_one_dark"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilUserName"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="@dimen/_258sdp"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        app:boxStrokeColor="@color/color_one_dark"
+                        app:cursorColor="@color/color_one_dark"
+                        app:hintTextColor="@color/color_one_dark">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etProfileUserName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="1"
+                            android:fontFamily="@font/roboto_medium"
+                            android:hint="Username"
+                            android:inputType="textPersonName"
+                            android:padding="10dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black"
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="bold|normal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:id="@+id/btUpdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@drawable/fab_btn_corner"
+                        android:clickable="true"
+                        android:clipToPadding="false"
+                        android:focusable="true">
+
+                        <TextView
+                            android:id="@+id/tvUpdate"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/roboto_medium"
+                            android:gravity="center"
+                            android:padding="14dp"
+                            android:text="UPDATE"
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/btDeleteProfile"
+                android:layout_width="@dimen/_270sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_80sdp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/fab_btn_corner"
+                android:backgroundTint="#DA2013"
+                android:clickable="true"
+                android:clipToPadding="false"
+                android:focusable="true"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cdProfileView"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tvDeleteProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:text="DELETE ACCOUNT"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,10 +1,11 @@
 package com.dtu.deltecdtu.repository
 
 import androidx.lifecycle.MutableLiveData
-import com.dtu.deltecdtu.Util.Response
-import com.dtu.deltecdtu.Util.Utility
+import com.dtu.deltecdtu.util.Response
+import com.dtu.deltecdtu.util.Utility
 import com.dtu.deltecdtu.model.ExtendedNoticeModel
 import com.dtu.deltecdtu.model.FirebaseDTUNewsModel
+import com.dtu.deltecdtu.model.ModelHoliday
 import com.dtu.deltecdtu.model.NoticeModel
 import com.dtu.deltecdtu.model.SubList
 import com.google.firebase.database.DataSnapshot
@@ -52,12 +53,45 @@ class MainRepository {
                     )
                     latestNewsItem.add(extendedNoticeModel)
                 }
+                latestNewsItem.reverse()
                 latestNewsLiveData.postValue(Response.Success(latestNewsItem))
             }
 
             override fun onCancelled(error: DatabaseError) {
                 latestNewsLiveData.postValue(Response.Error("Some error occurred"))
             }
+        })
+    }
+
+    fun fetchHolidays(
+        holidaysLiveData2024: MutableLiveData<Response<List<ModelHoliday>>>,
+        holidaysLiveData2023: MutableLiveData<Response<List<ModelHoliday>>>,
+        path: String
+    ) {
+        val holidayReference = database.getReference(path)
+        holidayReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val holidayList2024 = mutableListOf<ModelHoliday>()
+                val holidayList2023 = mutableListOf<ModelHoliday>()
+                for (ds in snapshot.children) {
+                    val holiday = ds.getValue(ModelHoliday::class.java)
+                    if (holiday != null) {
+                        if (holiday.year == 2024) {
+                            holidayList2024.add(holiday)
+                        } else {
+                            holidayList2023.add(holiday)
+                        }
+                    }
+                }
+                holidaysLiveData2024.postValue(Response.Success(holidayList2024))
+                holidaysLiveData2023.postValue(Response.Success(holidayList2023))
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                holidaysLiveData2024.postValue(Response.Error("$error"))
+                holidaysLiveData2023.postValue(Response.Error("$error"))
+            }
+
         })
     }
 }

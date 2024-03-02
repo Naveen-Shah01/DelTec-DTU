@@ -2,6 +2,7 @@ package com.dtu.deltecdtu
 
 import android.widget.TextView
 import com.dtu.deltecdtu.adapter.DTUNoticeAdapter
+import com.dtu.deltecdtu.model.ModelHoliday
 import com.dtu.deltecdtu.model.NoticeModel
 import com.google.android.material.card.MaterialCardView
 
@@ -22,4 +23,11 @@ interface SubListNoticeClickListener  {
     fun onDownloadClick(position: Int, url: String, cdDownload: MaterialCardView)
 }
 
+interface OpenDrawer{
+    fun openDrawer()
+}
+
+interface HolidayItemClickListener {
+    fun onHolidayClicked(modelHoliday: ModelHoliday)
+}
 

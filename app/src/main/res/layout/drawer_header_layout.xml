@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/color_one_light_two"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/sivDrawerProfileImage"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:contentDescription="Profile Image of User"
+        android:padding="2dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/avatar_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+        app:strokeWidth="2dp" />
+
+    <TextView
+        android:id="@+id/tvJoinedTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Joined"
+        android:textColor="#6C6C6C"
+        android:textSize="@dimen/_12ssp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/tvJoined"
+        app:layout_constraintStart_toStartOf="@id/tvJoined" />
+
+    <TextView
+        android:layout_marginStart="@dimen/_18sdp"
+        android:id="@+id/tvJoined"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="01-01-2024"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16ssp"
+        app:layout_constraintBottom_toBottomOf="@id/sivDrawerProfileImage"
+        app:layout_constraintStart_toEndOf="@id/sivDrawerProfileImage"
+        app:layout_constraintTop_toTopOf="@id/sivDrawerProfileImage" />
+
+    <TextView
+        android:id="@+id/drawerUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Username"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_20ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sivDrawerProfileImage" />
+
+    <TextView
+        android:id="@+id/drawerUserEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Email"
+        android:textColor="#6C6C6C"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintStart_toStartOf="@id/drawerUsername"
+        app:layout_constraintTop_toBottomOf="@id/drawerUsername" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

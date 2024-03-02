@@ -1,28 +1,27 @@
 package com.dtu.deltecdtu.service
 
 import android.app.NotificationManager
-import android.util.Log
 import androidx.core.content.ContextCompat
-import com.dtu.deltecdtu.Util.sendNotification
+import com.dtu.deltecdtu.util.sendNotification
+import com.example.deltecdtu.Util.Constants
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import timber.log.Timber
 
 
 class MyFirebaseService : FirebaseMessagingService() {
-    val TAG="Firebase Notification"
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-//        Log.d(TAG, "From: ${remoteMessage.from}")
+        Timber.tag(Constants.FIREBASE_NOTIFICATION_TAG).e("From: ${remoteMessage.from}")
 
         if (remoteMessage.data.isNotEmpty()) {
-//            Log.d(TAG, "Message data payload: ${remoteMessage.data}")
-
+            Timber.tag(Constants.FIREBASE_NOTIFICATION_TAG).e("Message data payload: ${remoteMessage.data}")
         }
-        // Check if message contains a notification payload.
+
         remoteMessage.notification?.let {
             val title = remoteMessage.notification?.title
             val body = it.body
-//            Log.d(TAG, "Message Title: $title")
-//            Log.d(TAG, "Message Notification Body: $body")
+            Timber.tag(Constants.FIREBASE_NOTIFICATION_TAG).e("Message Title: $title")
+            Timber.tag(Constants.FIREBASE_NOTIFICATION_TAG).e("Message Notification Body: $body")
             sendNotification(title!!, body!!)
         }
     }

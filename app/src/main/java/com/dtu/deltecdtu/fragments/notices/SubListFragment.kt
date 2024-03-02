@@ -23,10 +23,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.dtu.deltecdtu.AndroidDownloader
+import com.dtu.deltecdtu.util.AndroidDownloader
 import com.dtu.deltecdtu.R
 import com.dtu.deltecdtu.SubListNoticeClickListener
-import com.dtu.deltecdtu.Util.Utility
+import com.dtu.deltecdtu.util.Utility
 import com.dtu.deltecdtu.adapter.SubListAdapter
 import com.dtu.deltecdtu.databinding.FragmentSubListBinding
 import com.dtu.deltecdtu.model.SubListModel

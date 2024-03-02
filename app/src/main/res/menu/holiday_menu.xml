@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/downloadHolidayNotice"
+        android:icon="@drawable/download_icon"
+        android:title="@string/holiday_notice"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/holiday_search"
+        android:icon="@drawable/search_icon"
+        android:title="@string/search_holiday"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+</menu>

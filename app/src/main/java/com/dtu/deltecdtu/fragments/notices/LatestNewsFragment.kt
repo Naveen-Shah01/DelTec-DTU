@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,8 +24,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.dtu.deltecdtu.NoticeClickListener
 import com.dtu.deltecdtu.R
-import com.dtu.deltecdtu.Util.Response
-import com.dtu.deltecdtu.Util.Utility
+import com.dtu.deltecdtu.util.Response
+import com.dtu.deltecdtu.util.Utility
 import com.dtu.deltecdtu.adapter.DTUNoticeAdapter
 import com.dtu.deltecdtu.databinding.FragmentLatestNewsBinding
 import com.dtu.deltecdtu.model.ExtendedNoticeModel

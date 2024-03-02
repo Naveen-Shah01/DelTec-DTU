@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/person_icon"
+        android:checkable="true"
+        android:menuCategory="secondary"
+        android:title="Profile" />
+    <item
+        android:id="@+id/holidayMainFragment"
+        android:icon="@drawable/calendar_icon"
+        android:checkable="true"
+        android:menuCategory="secondary"
+        android:title="DTU Holidays" />
+    <item
+        android:checkable="true"
+        android:id="@+id/aboutFragment"
+        android:menuCategory="secondary"
+        android:icon="@drawable/info_icon"
+        android:title="About" />
+    <item
+        android:id="@+id/privacyPolicyFragment"
+        android:icon="@drawable/policy_icon"
+        android:checkable="true"
+        android:menuCategory="secondary"
+        android:title="Privacy Policy" />
+
+
+
+
+
+
+</menu>

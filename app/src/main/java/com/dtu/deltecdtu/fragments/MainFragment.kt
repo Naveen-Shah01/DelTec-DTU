@@ -1,6 +1,7 @@
 package com.dtu.deltecdtu.fragments
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.dtu.deltecdtu.OpenDrawer
 import com.dtu.deltecdtu.R
 import com.dtu.deltecdtu.adapter.ViewPagerAdapter
 import com.dtu.deltecdtu.authentication.LoginActivity
@@ -28,10 +30,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
+import timber.log.Timber
 
 class MainFragment : Fragment() {
     private val searchViewModel: SearchViewModel by activityViewModels()
-
+    private var listener: OpenDrawer? = null
     private val tabTitles = listOf("Latest", "Notices", "First Year", "Events", "Tenders", "Jobs")
     private val fragments =
         listOf(
@@ -62,8 +65,10 @@ class MainFragment : Fragment() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 collapseSearchView()
             }
+
             override fun onTabUnselected(tab: TabLayout.Tab?) {
             }
+
             override fun onTabReselected(tab: TabLayout.Tab?) {
             }
         })
@@ -90,6 +95,11 @@ class MainFragment : Fragment() {
     }
 
     private fun initToolbar() {
+        binding.noticesToolbar.setNavigationIcon(R.drawable.hamburger_icon)
+        binding.noticesToolbar.setNavigationOnClickListener {
+            listener?.openDrawer()
+        }
+
         binding.noticesToolbar.inflateMenu(R.menu.notice_search_menu)
         binding.noticesToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
@@ -99,10 +109,12 @@ class MainFragment : Fragment() {
                     startSearching(searchView)
                     true
                 }
-                R.id.logOut->{
+
+                R.id.logOut -> {
                     customDialogForLogout()
                     true
                 }
+
                 else -> false
             }
         }
@@ -113,33 +125,27 @@ class MainFragment : Fragment() {
         val dialogBinding = LogoutDialogBinding.inflate(layoutInflater)
         customDialog.setContentView(dialogBinding.root)
         customDialog.setCanceledOnTouchOutside(true)
-        dialogBinding.btLogOutConfirm.setOnClickListener{
-            Logout()
+        dialogBinding.btLogOutConfirm.setOnClickListener {
+            logout()
             customDialog.dismiss()
         }
-        dialogBinding.btLogOutCancel.setOnClickListener{
+        dialogBinding.btLogOutCancel.setOnClickListener {
             customDialog.dismiss()
         }
         customDialog.show()
     }
 
-    private fun Logout() {
 
-        // Initialize sign in client
-        googleSignInClient = GoogleSignIn.getClient(requireActivity(), GoogleSignInOptions.DEFAULT_SIGN_IN)
-        // Sign out from google
+    private fun logout() {
+        googleSignInClient =
+            GoogleSignIn.getClient(requireActivity(), GoogleSignInOptions.DEFAULT_SIGN_IN)
         googleSignInClient.signOut().addOnCompleteListener { task ->
-            // Check condition
             if (task.isSuccessful) {
-                // When task is successful sign out from firebase
                 FirebaseAuth.getInstance().signOut()
-                // Display Toast
-                Toast.makeText(requireContext(),"Logged Out",Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Logged Out", Toast.LENGTH_SHORT).show()
                 startLoginActivity()
             }
         }
-
-
     }
 
     private fun startLoginActivity() {
@@ -161,6 +167,14 @@ class MainFragment : Fragment() {
         })
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        try {
+            listener = context as OpenDrawer
+        } catch (castException: ClassCastException) {
+            Timber.tag("MainFragment").e("error $castException")
+        }
+    }
 
     override fun onStop() {
         super.onStop()

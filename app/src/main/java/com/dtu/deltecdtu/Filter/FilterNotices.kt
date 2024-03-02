@@ -31,8 +31,6 @@ class FilterNotices(
         return results
     }
     override fun publishResults(words: CharSequence?, results: FilterResults?) {
-
         noticeAdapter.noticesList = results?.values as List<ExtendedNoticeModel>
-
     }
 }

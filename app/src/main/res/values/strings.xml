@@ -5,6 +5,15 @@
     <string name="login_account">Don\'t have Account yet? <font color="#11683E"><b><u>Signup</u></b></font></string>
     <string name="forgot_password"><u>Forgot Password?</u></string>
     <string name="signup_account">Already have an account? <font color="#11683E"><b><u>Log In</u></b></font></string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="navigation_drawer_open">Open Drawer</string>
+    <string name="navigation_drawer_close">Close Drawer</string>
+    <string name="delete_account_warning_text_one">Are you sure you want to delete your account? This action cannot be undone.</string>
+    <string name="delete_text">Delete</string>
+    <string name="delete_account">Delete account</string>
+    <string name="holiday_notice">Holiday Notice</string>
+    <string name="search_holiday">Search Holiday</string>
+    <string name="holiday_name_placeholder_text">Holiday Name</string>
+    <string name="day_month_year_placeholder_text">Wednesday, December, 2024</string>
+    <string name="holiday_description">Holiday Description</string>
+    <string name="holidays_title">Holidays</string>
 </resources>

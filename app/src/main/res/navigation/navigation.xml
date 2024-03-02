@@ -9,7 +9,7 @@
         android:id="@+id/mainFragment"
         android:name="com.dtu.deltecdtu.fragments.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_subListFragment"
             app:destination="@id/subListFragment"
@@ -17,15 +17,54 @@
             app:enterAnim="@anim/enter_from_right"
             app:exitAnim="@anim/exit_to_right"
             app:popEnterAnim="@anim/enter_from_right"
-            app:popExitAnim="@anim/exit_to_right"/>
+            app:popExitAnim="@anim/exit_to_right" />
     </fragment>
     <fragment
         android:id="@+id/subListFragment"
         android:name="com.dtu.deltecdtu.fragments.notices.SubListFragment"
         android:label="fragment_sub_list"
-        tools:layout="@layout/fragment_sub_list" >
+        tools:layout="@layout/fragment_sub_list">
         <argument
             android:name="subList"
             app:argType="com.dtu.deltecdtu.model.NoticeModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.dtu.deltecdtu.fragments.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/privacyPolicyFragment"
+        android:name="com.dtu.deltecdtu.fragments.PrivacyPolicyFragment"
+        android:label="fragment_privacy_policy"
+        tools:layout="@layout/fragment_privacy_policy" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.dtu.deltecdtu.fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/holidayDetailFragment"
+        android:name="com.dtu.deltecdtu.fragments.holidays.HolidayDetailFragment"
+        android:label="fragment_holiday_detail"
+        tools:layout="@layout/fragment_holiday_detail">
+        <argument
+            android:name="holiday"
+            app:argType="com.dtu.deltecdtu.model.ModelHoliday" />
+    </fragment>
+    <fragment
+        android:id="@+id/holidayMainFragment"
+        android:name="com.dtu.deltecdtu.fragments.holidays.HolidayMainFragment"
+        android:label="fragment_holiday_main"
+        tools:layout="@layout/fragment_holiday_main">
+        <action
+            android:id="@+id/action_holidayMainFragment3_to_holidayDetailFragment"
+            app:destination="@id/holidayDetailFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_bottom"
+            app:popUpTo="@id/holidayMainFragment" />
     </fragment>
 </navigation>

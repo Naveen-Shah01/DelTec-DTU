@@ -22,18 +22,17 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/noticesToolbar"
-                android:background="@color/white"
-                app:theme="@style/AppTheme.Toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?android:actionBarSize">
+                android:layout_height="?android:actionBarSize"
+                android:background="@color/white"
+                app:theme="@style/AppTheme.Toolbar">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="155dp"
+                    android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="Notices"
-                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -60,10 +59,10 @@
             app:tabIndicatorFullWidth="true"
             app:tabMinWidth="90dp"
             app:tabMode="scrollable"
-            app:tabPaddingEnd="12dp"
-            app:tabPaddingStart="12dp"
+            app:tabPaddingEnd="@dimen/_12sdp"
+            app:tabPaddingStart="@dimen/_12sdp"
             app:tabRippleColor="@color/color_one_light_one"
-            app:tabSelectedTextColor="@color/color_one"
+            app:tabSelectedTextColor="@color/color_one_dark"
             app:tabTextColor="#989898" />
 
         <androidx.viewpager2.widget.ViewPager2

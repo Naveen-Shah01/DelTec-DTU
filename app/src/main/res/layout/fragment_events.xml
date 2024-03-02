@@ -11,12 +11,12 @@
         android:id="@+id/rvEventsFragmentRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_notice" />
+        tools:listitem="@layout/item_notice"
+        />
 
     <ProgressBar
         android:id="@+id/pbProgressBar"

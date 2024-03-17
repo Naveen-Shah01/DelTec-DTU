@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,7 @@ import com.dtu.deltecdtu.model.ModelHoliday
 import com.dtu.deltecdtu.util.Utility
 import com.google.android.material.imageview.ShapeableImageView
 
-
+//4.
 class HolidayDetailFragment : Fragment() {
     private var _binding: FragmentHolidayDetailBinding? = null
     private val binding get() = _binding!!
@@ -31,7 +30,6 @@ class HolidayDetailFragment : Fragment() {
     ): View {
         _binding = FragmentHolidayDetailBinding.inflate(inflater, container, false)
         initToolbar()
-        //call view-model to fetch the list of holidays
         val holidayModel = args.holiday
         setValues(holidayModel)
 
@@ -51,18 +49,13 @@ class HolidayDetailFragment : Fragment() {
         binding.tvSakaDate.text = Utility.getSuitableDate(holidayModel.sakaDate!!)
         binding.tvSakaMonth.text = holidayModel.sakaMonth
         val imageUrl = holidayModel.holidayImageLink
-        Log.e("Link", "$imageUrl")
-
         setImageViewBackgroundColor(binding.sivHolidayImage, holidayModel.backgroundColor)
 
-        //for textview scrolling
         binding.tvHolidayDescription.movementMethod = ScrollingMovementMethod()
-
-
         Glide.with(this).load(imageUrl).apply(
             RequestOptions().placeholder(R.drawable.holiday_image_placeholder)
-                .error(R.drawable.broken_image_icon) // Error image
-                .diskCacheStrategy(DiskCacheStrategy.ALL) // Cache strategy
+                .error(R.drawable.broken_image_icon)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
         ).into(binding.sivHolidayImage)
     }
 

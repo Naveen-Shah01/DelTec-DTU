@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,13 +22,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.dtu.deltecdtu.util.AndroidDownloader
 import com.dtu.deltecdtu.R
 import com.dtu.deltecdtu.SubListNoticeClickListener
-import com.dtu.deltecdtu.util.Utility
 import com.dtu.deltecdtu.adapter.SubListAdapter
 import com.dtu.deltecdtu.databinding.FragmentSubListBinding
 import com.dtu.deltecdtu.model.SubListModel
+import com.dtu.deltecdtu.util.AndroidDownloader
+import com.dtu.deltecdtu.util.Utility
 import com.example.deltecdtu.Util.Constants
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.snackbar.Snackbar
@@ -60,9 +59,6 @@ class SubListFragment : Fragment(), SubListNoticeClickListener {
         setupRecyclerView()
         val noticeModel = args.subList.notice
         binding.tvMainHeading.text = noticeModel!!.name
-
-//        println(noticeModel)
-
         val list = noticeModel.subList
 
 
@@ -89,8 +85,6 @@ class SubListFragment : Fragment(), SubListNoticeClickListener {
                         withContext(Dispatchers.Main) {
                             if (bitmap != null) {
                                 item.bitmap = bitmap
-                                Log.e("sublist", url)
-                                Log.e("Fragment", "${item.bitmap}")
                             }
                         }
                     }

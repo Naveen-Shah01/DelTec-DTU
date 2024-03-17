@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import java.io.Serializable
 import java.util.UUID
 
+//8.
 data class SubListModel(
     var name: String? = null,
     val url: String? = null,

@@ -48,10 +48,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import timber.log.Timber
 import java.util.UUID
 
-//TODO give a warning to user when account delete is pressed in case of google account
+//6.
 class ProfileFragment : Fragment() {
 
 
@@ -109,7 +108,6 @@ class ProfileFragment : Fragment() {
                 val providerData = user.providerData
                 for (profile in providerData) {
                     if (profile.providerId == GoogleAuthProvider.PROVIDER_ID) {
-                        Timber.tag("Profile Fragment").e("Google...")
                         customDialogForDeleteAccountByGoogle(user)
 
                     } else if (profile.providerId == EmailAuthProvider.PROVIDER_ID) {
@@ -122,8 +120,6 @@ class ProfileFragment : Fragment() {
     }
 
     private fun callForDeleteAccountByEmail(password: String, user: FirebaseUser) {
-        Timber.tag("Profile Fragment").e("password")
-        Timber.tag("Profile Fragment").e(password)
 
         progressVisibleButtonNotClickable()
         if (password.isNotEmpty() && user.email != null) {
@@ -271,12 +267,10 @@ class ProfileFragment : Fragment() {
         userId = auth.currentUser!!.uid
         userEmail = auth.currentUser!!.email.toString()
 
-        Timber.tag("Profile Fragment").e("retrieving..........")
-        myReference.child(userId).addValueEventListener(object : ValueEventListener {
+        //7.
+        myReference.child(userId).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (!isDataChanged) {
-
-                    Timber.tag("Profile Fragment").e("isDataChanged $isDataChanged")
                     val user = snapshot.getValue(UsersEntity::class.java)
                     makeElementsVisible()
                     if (user != null) {
@@ -285,21 +279,13 @@ class ProfileFragment : Fragment() {
                         imageName = user.imageName
                         profileImageUrl = user.profileImageUrl
                         joined = user.joined
-
                         if (user.profileImageUrl != "") {
                             if(isAdded){
                                 Glide.with(this@ProfileFragment).load(user.profileImageUrl)
                                     .into(binding.iBtnChooseImage)
                             }
-
                         }
                     }
-
-                    Timber.tag("Profile Fragment").e("userId: $userId")
-                    Timber.tag("Profile Fragment").e("userName: $userName")
-                    Timber.tag("Profile Fragment").e("userEmail: $userEmail")
-                    Timber.tag("Profile Fragment").e("profileImageUrl: $profileImageUrl")
-                    Timber.tag("Profile Fragment").e("imageName: $imageName")
                 }
             }
 
@@ -320,20 +306,15 @@ class ProfileFragment : Fragment() {
 
     private fun addUserToDatabase() {
         val user = UsersEntity(userId, userName, userEmail, profileImageUrl, imageName, joined)
-        Timber.tag("Profile Fragment").e("updating.........")
-        Timber.tag("Profile Fragment").e("$user")
 
         isDataChanged = true
         myReference.child(userId).setValue(user).addOnSuccessListener {
-            Timber.tag("Profile Fragment").e("updated successfully")
             Toast.makeText(
                 requireContext(), "Updated successfully...", Toast.LENGTH_SHORT
             ).show()
-
             progressInvisibleButtonClickable()
         }.addOnFailureListener { e ->
             Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_LONG).show()
-            Timber.tag("Profile Fragment").e("Failed to add due to ${e.message}")
             progressInvisibleButtonClickable()
         }
     }

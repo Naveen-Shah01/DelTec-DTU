@@ -24,7 +24,6 @@ class AboutFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentAboutBinding.inflate(inflater, container, false)
 
         lifecycleScope.launch {

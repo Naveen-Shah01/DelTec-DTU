@@ -30,7 +30,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
-import timber.log.Timber
 
 class MainFragment : Fragment() {
     private val searchViewModel: SearchViewModel by activityViewModels()
@@ -172,7 +171,7 @@ class MainFragment : Fragment() {
         try {
             listener = context as OpenDrawer
         } catch (castException: ClassCastException) {
-            Timber.tag("MainFragment").e("error $castException")
+            castException.printStackTrace()
         }
     }
 

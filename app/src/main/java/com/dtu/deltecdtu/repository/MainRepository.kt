@@ -28,6 +28,7 @@ class MainRepository {
 
                     val notice = ds.child("notice")
                     val name = notice.child("name").getValue(String::class.java)
+                    println(name)
                     val link = notice.child("link").getValue(String::class.java)
                     val subList = notice.child("sub_list")
                     val subIListItems = mutableListOf<SubList>()
@@ -91,7 +92,6 @@ class MainRepository {
                 holidaysLiveData2024.postValue(Response.Error("$error"))
                 holidaysLiveData2023.postValue(Response.Error("$error"))
             }
-
         })
     }
 }

@@ -100,13 +100,11 @@ class LatestNewsFragment : Fragment(), NoticeClickListener {
             val type = item.type
             item.isDownloaded = isDownloaded
             if (isDownloaded) {
-//                Log.e("checking","$item")
                 CoroutineScope(Dispatchers.IO).launch {
                     val bitmap = Utility.generateBitmap(requireContext(), url, type)
                     withContext(Dispatchers.Main) {
                         if (bitmap != null) {
                             item.bitmap = bitmap
-//                            Log.e("Fragment", "${item.bitmap}")
                         }
                     }
                 }
@@ -208,10 +206,6 @@ class LatestNewsFragment : Fragment(), NoticeClickListener {
     }
 
     override fun onDownloadClick(position: Int, url: String, cdDownload: MaterialCardView) {
-//        Log.e("Download in fragment", "Download clicked")
-//        Log.e("Download in fragment", "$url")
-//        Log.e("Download in fragment", "$position")
-//        Log.e("Download in fragment", "$dtuNoticeAdapter")
         val id = Utility.downloadFile(requireContext(), url, position, dtuNoticeAdapter)
         Snackbar.make(requireView(), "Downloading $url", Snackbar.LENGTH_LONG).show()
     }

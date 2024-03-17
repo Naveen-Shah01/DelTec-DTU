@@ -20,7 +20,6 @@ class ForgotPasswordActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.color_one_light_two)
 
         binding.tvResetLogin.setOnClickListener {
-            // it will automatically destroy activity.
             onBackPressedDispatcher.onBackPressed()
         }
 

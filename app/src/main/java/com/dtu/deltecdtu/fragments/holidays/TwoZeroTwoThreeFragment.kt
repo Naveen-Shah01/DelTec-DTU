@@ -20,7 +20,6 @@ import com.dtu.deltecdtu.viewmodel.HolidayViewModel
 class TwoZeroTwoThreeFragment : Fragment(), HolidayItemClickListener {
     private var _binding: FragmentTwoZeroTwoThreeBinding? = null
     private val binding get() = _binding!!
-
     private val viewModel: HolidayViewModel by activityViewModels()
     private lateinit var holidayAdapter: HolidayAdapter
     override fun onCreateView(

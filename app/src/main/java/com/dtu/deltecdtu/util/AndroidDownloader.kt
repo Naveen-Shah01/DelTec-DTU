@@ -52,6 +52,25 @@ class AndroidDownloader(private val context: Context) : Downloader {
         return downloadId
     }
 
+    fun downloadPdf(url: String, fileName: String): Long {
+        val mimeType = Utility.getMimeType(url)
+        Timber.tag(DOWNLOAD_TAG).e("downloading $fileName")
+        val request = DownloadManager.Request(Uri.parse(url))
+            .setMimeType(mimeType)
+            .setTitle(fileName)
+            .setDescription("Downloading...")
+            .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
+            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+            .setDestinationInExternalFilesDir(
+                context,
+                Environment.DIRECTORY_DOWNLOADS,
+                fileName
+            )
+        val downloadId = downloadManager.enqueue(request)
+        Timber.tag(DOWNLOAD_TAG).e("downloadId is $downloadId")
+        return downloadId
+    }
+
     private fun checkStatus(
         downloadId: Long,
         url: String,

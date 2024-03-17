@@ -54,8 +54,6 @@ class LoginActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.color_one_light_two)
 
         auth = FirebaseAuth.getInstance()
-
-        //register the launcher
         registerActivityForGoogleSignIn()
 
         binding.tvSignUp.setOnClickListener {
@@ -132,7 +130,6 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
-    // will help to make the user directly go to main screen if already login
     override fun onStart() {
         super.onStart()
         val user = auth.currentUser

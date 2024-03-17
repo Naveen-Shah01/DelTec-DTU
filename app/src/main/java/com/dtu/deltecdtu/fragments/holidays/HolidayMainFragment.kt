@@ -1,29 +1,34 @@
 package com.dtu.deltecdtu.fragments.holidays
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.dtu.deltecdtu.R
 import com.dtu.deltecdtu.adapter.HolidayViewPagerAdapter
+import com.dtu.deltecdtu.databinding.DialogHolidayNoticeBinding
 import com.dtu.deltecdtu.databinding.FragmentHolidayMainBinding
+import com.dtu.deltecdtu.databinding.LogoutDialogBinding
+import com.dtu.deltecdtu.util.AndroidDownloader
 import com.dtu.deltecdtu.viewmodel.HolidayViewModel
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-
-
-
-//TODO change the background of image based on image of holiday
 
 class HolidayMainFragment : Fragment() {
     private val tabTitles = listOf("2024", "2023")
     private val fragments = listOf(TwoZeroTwoFourFragment(), TwoZeroTwoThreeFragment())
 
+    //5.
+    private val holiday2024Url = "http://dtu.ac.in/Web/notice/2023/dec/file1234.pdf"
+    private val holiday2023Url = "http://dtu.ac.in/Web/notice/2022/dec/file1258.pdf"
 
     private val searchViewModel: HolidayViewModel by activityViewModels()
     private var _binding: FragmentHolidayMainBinding? = null
@@ -36,8 +41,6 @@ class HolidayMainFragment : Fragment() {
         initToolbar()
         initViewPager()
         initTabLayout()
-
-        //TO disable the swiping between pages
         binding.viewPagerHoliday.isUserInputEnabled = false
 
         binding.tabLayoutHoliday.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -74,15 +77,41 @@ class HolidayMainFragment : Fragment() {
                     startSearching(searchView)
                     true
                 }
+
                 R.id.downloadHolidayNotice -> {
-                    //TODO download holiday notice structure
-                    //TODO show dialog of two fee holiday notice 2023,2024
-//                    downloadFreeStructure
+                    showDownloadNotice()
                     true
                 }
+
                 else -> false
             }
         }
+    }
+
+    private fun showDownloadNotice() {
+        val customDialog = Dialog(requireContext())
+        val dialogBinding = DialogHolidayNoticeBinding.inflate(layoutInflater)
+        customDialog.setContentView(dialogBinding.root)
+        customDialog.setCanceledOnTouchOutside(true)
+        dialogBinding.cl2024.setOnClickListener {
+            AndroidDownloader(requireContext()).downloadPdf(
+                holiday2024Url, "Holiday Notice 2024.pdf"
+            )
+            Snackbar.make(
+                requireView(), "Downloading 2024 Holiday notice....", Snackbar.LENGTH_LONG
+            ).show()
+            customDialog.dismiss()
+        }
+        dialogBinding.cl2023.setOnClickListener {
+            AndroidDownloader(requireContext()).downloadPdf(
+                holiday2023Url, "Holiday Notice 2023.pdf"
+            )
+            Snackbar.make(
+                requireView(), "Downloading 2023 Holiday notice....", Snackbar.LENGTH_LONG
+            ).show()
+            customDialog.dismiss()
+        }
+        customDialog.show()
     }
 
     private fun startSearching(searchView: SearchView) {

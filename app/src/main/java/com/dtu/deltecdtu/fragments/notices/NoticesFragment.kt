@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,12 +24,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.dtu.deltecdtu.NoticeClickListener
 import com.dtu.deltecdtu.R
-import com.dtu.deltecdtu.util.Response
-import com.dtu.deltecdtu.util.Utility
 import com.dtu.deltecdtu.adapter.DTUNoticeAdapter
 import com.dtu.deltecdtu.databinding.FragmentNoticesBinding
 import com.dtu.deltecdtu.model.ExtendedNoticeModel
 import com.dtu.deltecdtu.model.NoticeModel
+import com.dtu.deltecdtu.util.Response
+import com.dtu.deltecdtu.util.Utility
 import com.dtu.deltecdtu.viewmodel.NoticesViewModel
 import com.dtu.deltecdtu.viewmodel.SearchViewModel
 import com.example.deltecdtu.Util.Constants
@@ -47,9 +46,7 @@ class NoticesFragment : Fragment(), NoticeClickListener {
 
     private lateinit var viewModel: NoticesViewModel
     private val searchViewModel: SearchViewModel by activityViewModels()
-
     private lateinit var dtuNoticeAdapter: DTUNoticeAdapter
-
     private var _binding: FragmentNoticesBinding? = null
     private val binding get() = _binding!!
 
@@ -57,11 +54,8 @@ class NoticesFragment : Fragment(), NoticeClickListener {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentNoticesBinding.inflate(inflater, container, false)
-
         viewModel = ViewModelProvider(this)[NoticesViewModel::class.java]
-
         setupRecyclerView()
-
         viewModel.fetchLatestNews()
         viewModel.latestNoticesLiveData.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
@@ -101,13 +95,11 @@ class NoticesFragment : Fragment(), NoticeClickListener {
             val type = item.type
             item.isDownloaded = isDownloaded
             if (isDownloaded) {
-//                Log.e("checking","$item")
                 CoroutineScope(Dispatchers.IO).launch {
                     val bitmap = Utility.generateBitmap(requireContext(), url, type)
                     withContext(Dispatchers.Main) {
                         if (bitmap != null) {
                             item.bitmap = bitmap
-                            Log.e("Fragment", "${item.bitmap}")
                         }
                     }
                 }
@@ -209,10 +201,6 @@ class NoticesFragment : Fragment(), NoticeClickListener {
     }
 
     override fun onDownloadClick(position: Int, url: String, cdDownload: MaterialCardView) {
-//        Log.e("Download in fragment", "Download clicked")
-//        Log.e("Download in fragment", "$url")
-//        Log.e("Download in fragment", "$position")
-//        Log.e("Download in fragment", "$dtuNoticeAdapter")
         val id = Utility.downloadFile(requireContext(), url, position, dtuNoticeAdapter)
         Snackbar.make(requireView(), "Downloading $url", Snackbar.LENGTH_LONG).show()
     }

@@ -71,6 +71,7 @@ class SignupActivity : AppCompatActivity() {
     private fun signUpWithGoogle() {
         progressVisibleButtonNotClickable()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            //3.
             .requestIdToken("20746531457-bm6edfhg2dd99hv8qa8en37o209rqcov.apps.googleusercontent.com")
             .requestEmail().build()
 
@@ -257,7 +258,7 @@ class SignupActivity : AppCompatActivity() {
         currentUser!!.sendEmailVerification()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // TODO move to an activity or fragment to tell user to verify email and check the spam folder
+                  //2.
                     Toast.makeText(
                         applicationContext,
                         "Registered please verify email",

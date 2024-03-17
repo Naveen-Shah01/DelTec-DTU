@@ -11,8 +11,6 @@ import android.os.Build
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.dtu.deltecdtu.util.Utility
-import com.example.deltecdtu.Util.Constants
-import timber.log.Timber
 import java.io.File
 
 
@@ -25,7 +23,6 @@ class DownloadCompletedReceiver() : BroadcastReceiver() {
         if (intent?.action == "android.intent.action.DOWNLOAD_COMPLETE") {
             val id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1L)
             if (id != -1L) {
-                Timber.tag(Constants.BROADCAST_RECEIVER_TAG).e("Download Complete")
                 Toast.makeText(context, "Download complete!", Toast.LENGTH_SHORT).show()
                 val query = DownloadManager.Query().setFilterById(id)
                 val cursor = downloadManager.query(query)

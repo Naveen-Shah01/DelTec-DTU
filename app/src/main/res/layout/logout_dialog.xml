@@ -13,7 +13,7 @@
         android:layout_marginBottom="@dimen/_20sdp">
 
         <TextView
-            android:id="@+id/tvLogout"
+            android:id="@+id/tvDownloadNotice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_18sdp"
@@ -36,9 +36,9 @@
             android:text="Are you sure you want to log out?"
             android:textColor="#575757"
             android:textSize="@dimen/_13ssp"
-            app:layout_constraintEnd_toEndOf="@id/tvLogout"
-            app:layout_constraintStart_toStartOf="@id/tvLogout"
-            app:layout_constraintTop_toBottomOf="@id/tvLogout" />
+            app:layout_constraintEnd_toEndOf="@id/tvDownloadNotice"
+            app:layout_constraintStart_toStartOf="@id/tvDownloadNotice"
+            app:layout_constraintTop_toBottomOf="@id/tvDownloadNotice" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btLogOutCancel"

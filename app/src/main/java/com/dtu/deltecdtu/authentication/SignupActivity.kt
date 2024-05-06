@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.core.widget.addTextChangedListener
-import com.dtu.deltecdtu.MainActivity
+import com.dtu.deltecdtu.ui.activities.MainActivity
 import com.dtu.deltecdtu.R
 import com.dtu.deltecdtu.util.Utility
 import com.dtu.deltecdtu.databinding.ActivitySignupBinding
@@ -29,7 +29,6 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.util.regex.Pattern
-
 
 class SignupActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
@@ -74,8 +73,6 @@ class SignupActivity : AppCompatActivity() {
             //3.
             .requestIdToken("20746531457-bm6edfhg2dd99hv8qa8en37o209rqcov.apps.googleusercontent.com")
             .requestEmail().build()
-
-
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         signUp()
     }
@@ -87,19 +84,28 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun registerActivityForGoogleSignIn() {
-        activityResultLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult(),
-                ActivityResultCallback { result ->
-                    val resultCode = result.resultCode
-                    val data = result.data
-                    if (resultCode == RESULT_OK && data != null) {
-                        val task: Task<GoogleSignInAccount> =
-                            GoogleSignIn.getSignedInAccountFromIntent(data)
+        activityResultLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult(),
+            ActivityResultCallback { result ->
+                val resultCode = result.resultCode
+                val data = result.data
+                if (resultCode == RESULT_OK && data != null) {
+                    val task: Task<GoogleSignInAccount> =
+                        GoogleSignIn.getSignedInAccountFromIntent(data)
+                    if (task.isSuccessful) {
                         fireBaseSignInWithGoogle(task)
                     } else {
-                        progressInvisibleButtonClickable()
+                        Toast.makeText(
+                            applicationContext,
+                            "Some error occurred please try again...",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
-                })
+
+                } else {
+                    progressInvisibleButtonClickable()
+                }
+            })
     }
 
     private fun fireBaseSignInWithGoogle(task: Task<GoogleSignInAccount>) {
@@ -119,7 +125,6 @@ class SignupActivity : AppCompatActivity() {
         auth.signInWithCredential(authCredential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val user = auth.currentUser
-
                 val isNewUser = task.result.additionalUserInfo!!.isNewUser
                 if (isNewUser) {
                     val userId = user!!.uid
@@ -164,10 +169,8 @@ class SignupActivity : AppCompatActivity() {
             )
             progressInvisibleButtonClickable()
             finish()
-        }
-            .addOnFailureListener {
-                Toast.makeText(applicationContext, "Please try again", Toast.LENGTH_LONG)
-                    .show()
+        }.addOnFailureListener {
+                Toast.makeText(applicationContext, "Please try again", Toast.LENGTH_LONG).show()
                 progressInvisibleButtonClickable()
             }
     }
@@ -177,8 +180,9 @@ class SignupActivity : AppCompatActivity() {
         val signUpName: String = binding.etNameSignUp.text.toString().trim()
         val signUpPassword: String = binding.etPasswordSignUp.text.toString().trim()
 
-        if (isDetailsNotEmpty(signUpEmail, signUpName, signUpPassword)
-            && isPassWordValid(signUpPassword)
+        if (isDetailsNotEmpty(signUpEmail, signUpName, signUpPassword) && isPassWordValid(
+                signUpPassword
+            )
         ) {
             signUpWithFireBase(signUpEmail, signUpPassword, signUpName)
         }
@@ -202,9 +206,7 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun isDetailsNotEmpty(
-        signUpEmail: String,
-        signUpName: String,
-        signUpPassword: String
+        signUpEmail: String, signUpName: String, signUpPassword: String
     ): Boolean {
         var valid = true
         if (TextUtils.isEmpty(signUpEmail)) {
@@ -255,14 +257,11 @@ class SignupActivity : AppCompatActivity() {
 
     private fun sendVerificationEmail(userEmail: String, userName: String) {
         val currentUser = auth.currentUser
-        currentUser!!.sendEmailVerification()
-            .addOnCompleteListener { task ->
+        currentUser!!.sendEmailVerification().addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                  //2.
+                    //2.
                     Toast.makeText(
-                        applicationContext,
-                        "Registered please verify email",
-                        Toast.LENGTH_LONG
+                        applicationContext, "Registered please verify email", Toast.LENGTH_LONG
                     ).show()
                     val userId = currentUser.uid
                     addUserToDatabase(userId, userName, userEmail)

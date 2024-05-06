@@ -6,8 +6,9 @@ import android.graphics.BitmapFactory
 import android.os.Environment
 import android.os.ParcelFileDescriptor
 import android.webkit.MimeTypeMap
+import com.bumptech.glide.request.RequestOptions
+import com.dtu.deltecdtu.R
 import com.dtu.deltecdtu.adapter.DTUNoticeAdapter
-import timber.log.Timber
 import java.io.File
 import java.io.IOException
 import java.util.Calendar
@@ -35,7 +36,6 @@ object Utility {
                 fileDescriptor.close()
                 generatedBitmap
             } catch (error: IOException) {
-                Timber.tag("Utility").e("Error generating in PDF thumbnail $error")
                 null
             }
         } else {
@@ -60,14 +60,7 @@ object Utility {
     fun downloadFile(
         context: Context, url: String, position: Int, dtuNoticeAdapter: DTUNoticeAdapter
     ): Long {
-        Timber.tag("Utility").e("Download clicked")
-        Timber.tag("Utility").e(url)
-        Timber.tag("Utility").e("$position")
-        Timber.tag("Utility").e("$dtuNoticeAdapter")
-
         val downloader = AndroidDownloader(context)
-        Timber.tag("Utility").e("context passed")
-
         return downloader.downloadFileFromDTUNoticeAdapter(url, position, dtuNoticeAdapter)
     }
 
@@ -75,7 +68,6 @@ object Utility {
         val fileName = getFileNameFromUrl(url)
         val directory = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
         val file = File(directory, fileName)
-        Timber.tag("Utility").e("is file exist ${file.exists()}")
         return file.exists()
     }
 
@@ -104,7 +96,6 @@ object Utility {
         val extension = MimeTypeMap.getFileExtensionFromUrl(url)
         if (extension != null) {
             type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension)
-            Timber.tag("mimeType").e("$type")
         }
         return type
     }
@@ -127,5 +118,9 @@ object Utility {
         } else {
             "$date"
         }
+    }
+    fun getGlideOptions(): RequestOptions {
+        return RequestOptions().centerCrop().placeholder(R.drawable.person_image)
+            .error(R.drawable.person_image)
     }
 }

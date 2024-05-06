@@ -5,7 +5,7 @@
     android:id="@+id/latestFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.notices.NoticesFragment">
+    tools:context=".ui.fragments.notices.NoticesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvNoticesFragmentRecyclerView"

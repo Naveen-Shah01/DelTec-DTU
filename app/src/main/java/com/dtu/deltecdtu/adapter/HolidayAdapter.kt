@@ -7,7 +7,7 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.dtu.deltecdtu.Filter.FilterHolidays
+import com.dtu.deltecdtu.filter.FilterHolidays
 import com.dtu.deltecdtu.HolidayItemClickListener
 import com.dtu.deltecdtu.databinding.ListItemHolidaysBinding
 import com.dtu.deltecdtu.model.ModelHoliday

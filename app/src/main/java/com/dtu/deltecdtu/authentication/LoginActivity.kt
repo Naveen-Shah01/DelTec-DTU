@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.children
-import com.dtu.deltecdtu.MainActivity
+import com.dtu.deltecdtu.ui.activities.MainActivity
 import com.dtu.deltecdtu.R
 import com.dtu.deltecdtu.util.Utility
 import com.dtu.deltecdtu.databinding.ActivityLoginBinding
@@ -52,7 +52,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(view)
 
         window.statusBarColor = ContextCompat.getColor(this, R.color.color_one_light_two)
-
         auth = FirebaseAuth.getInstance()
         registerActivityForGoogleSignIn()
 
@@ -124,8 +123,7 @@ class LoginActivity : AppCompatActivity() {
                         applicationContext,
                         task.exception?.localizedMessage, Toast.LENGTH_SHORT,
                     ).show()
-                    binding.btLogin.isClickable = true
-                    binding.pbProgressLogin.visibility = View.INVISIBLE
+                    progressInvisibleButtonClickable()
                 }
             }
     }
@@ -138,6 +136,9 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+//        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+//        startActivity(intent)
+//        finish()
     }
 
     private fun fireBaseSignInWithGoogle(task: Task<GoogleSignInAccount>) {

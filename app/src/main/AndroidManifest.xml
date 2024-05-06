@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
     <!-- Devices running Android 13 (API level 33) or higher -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
     <application
         android:name=".application.MyApp"
@@ -30,6 +31,9 @@
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
+            android:name=".ui.activities.FullScreenImageActivity"
+            android:exported="false" />
+        <activity
             android:name=".authentication.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Starting"
@@ -41,7 +45,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
 

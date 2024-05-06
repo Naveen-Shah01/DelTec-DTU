@@ -28,4 +28,27 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
+    </style>
+
+    <style name="MyAlertDialogTheme" parent="Base.Theme.AppCompat.Light.Dialog.Alert">
+        <item name="windowFixedWidthMajor">90%</item>
+        <item name="windowFixedWidthMinor">90%</item>
+    </style>
+
+    <style name="Widget.App.Toolbar.Surface" parent="Widget.Material3.Toolbar.Surface">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Toolbar.Surface</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Toolbar.Surface" parent="ThemeOverlay.Material3.Toolbar.Surface">
+        <item name="elevationOverlayEnabled">false</item>
+    </style>
+
+    <style name="AnimationDialog">
+        <item name="android:windowEnterAnimation">@anim/zoom_in</item>
+        <item name="android:windowExitAnimation">@anim/zoom_out</item>
+    </style>
 </resources>

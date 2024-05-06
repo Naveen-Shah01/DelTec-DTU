@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dtu.deltecdtu.NoticeClickListener
-import com.dtu.deltecdtu.Filter.FilterNotices
+import com.dtu.deltecdtu.filter.FilterNotices
 import com.dtu.deltecdtu.util.Utility
 import com.dtu.deltecdtu.databinding.ItemNoticeBinding
 import com.dtu.deltecdtu.model.ExtendedNoticeModel

@@ -16,4 +16,19 @@
     <string name="day_month_year_placeholder_text">Wednesday, December, 2024</string>
     <string name="holiday_description">Holiday Description</string>
     <string name="holidays_title">Holidays</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="contacts_text">Contacts</string>
+    <string name="department_text">Department</string>
+    <string name="faculty_detail">Faculty Detail</string>
+    <string name="expand_specialisation">Expand Specialisation</string>
+    <string name="specialization">Specialization</string>
+    <string name="expand_qualification">Expand Qualification</string>
+    <string name="qualifications">Qualifications</string>
+    <string name="loading">Loading</string>
+    <string name="profile_image_of_professor">Profile Image of Professor</string>
+    <string name="department_of_electronics_amp_communication_engineering"><![CDATA[Department of Electronics & Communication Engineering]]></string>
+    <string name="specialisation_holder_text">Machine Learning, Deep Learning, Pattern Recognition, Computer Vision, Digital Image Processing, Human Action and Activity Recognition, Sentiment Analysis, Spam Analysis, Fake News Analysis, Rumour Detection, Biometric Analysis.</string>
+
 </resources>

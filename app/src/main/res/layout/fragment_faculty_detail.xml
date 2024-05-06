@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    android:scrollbars="none">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        tools:context=".faculty.FacultyDetailFragment">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/tbToolbarFacultyDetail"
+            android:layout_width="match_parent"
+            android:layout_height="?android:actionBarSize"
+            android:background="@color/color_one_dark_one"
+            android:elevation="@dimen/_4sdp"
+            android:outlineAmbientShadowColor="@color/black"
+            android:outlineSpotShadowColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/TextAppearance.Material3.ActionBar.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/faculty_detail"
+                android:textColor="@color/white" />
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:background="@color/color_one_dark_one"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tbToolbarFacultyDetail" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/sivProfessorImage"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_110sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="#EAF1ED"
+            android:contentDescription="@string/profile_image_of_professor"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/person_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tbToolbarFacultyDetail"
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+            app:strokeColor="@color/white"
+            app:strokeWidth="4dp" />
+
+        <TextView
+            android:id="@+id/tvProfessorName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:fontFamily="@font/google_sans_bold"
+            android:gravity="center"
+            android:text="Dr. Prashant Giridhar Shambharkar"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sivProfessorImage" />
+
+        <TextView
+            android:id="@+id/tvProfessorDesignation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:fontFamily="@font/google_sans_regular"
+            android:gravity="center"
+            android:text="Football Coach, Sports Co-coordinator"
+            android:textColor="#575757"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProfessorName" />
+
+        <TextView
+            android:id="@+id/tvProfessorHierarchy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:fontFamily="@font/google_sans_regular"
+            android:gravity="center"
+            android:text="Associate Dean (Student Welfare)"
+            android:textColor="#575757"
+            android:textSize="@dimen/_14ssp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProfessorDesignation"
+            tools:visibility="visible" />
+
+        <View
+            android:id="@+id/separator_one"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:background="#E4E4E4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProfessorHierarchy" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cdDepartmentContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            app:cardBackgroundColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/separator_one"
+            app:strokeColor="#E4E4E4"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:id="@+id/llDepartmentContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:fontFamily="@font/google_sans_medium"
+                    android:text="@string/department_text"
+                    android:textColor="#494949"
+                    android:textSize="@dimen/_16sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvDepartmentName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/google_sans_regular"
+                    android:gravity="start"
+                    android:text="@string/department_of_electronics_amp_communication_engineering"
+                    android:textColor="#595959"
+                    android:textSize="@dimen/_13sdp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cdcontainerProfessorContacts"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            app:cardBackgroundColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cdDepartmentContainer"
+            app:strokeColor="#E4E4E4"
+            app:strokeWidth="1dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/containerProfessorContacts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llDepartmentContainer">
+
+                <TextView
+                    android:id="@+id/tvContactsTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:fontFamily="@font/google_sans_medium"
+                    android:text="@string/contacts_text"
+                    android:textColor="#494949"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/llOne"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvContactsTitle">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:src="@drawable/phone_icon"
+                        app:tint="@color/color_one_dark_one" />
+
+                    <TextView
+                        android:id="@+id/tvMobileNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/google_sans_regular"
+                        android:gravity="start|center_vertical"
+                        android:text="+919999999999"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAlternatePhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llOne">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:src="@drawable/phone_icon"
+                        app:tint="@color/color_one_dark_one" />
+
+                    <TextView
+                        android:id="@+id/tvAlternateMobileNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/google_sans_regular"
+                        android:gravity="start|center_vertical"
+                        android:text="+919999999999"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llThree"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llAlternatePhone">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:src="@drawable/email_icon"
+                        app:tint="#980000" />
+
+                    <TextView
+                        android:id="@+id/tvEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/google_sans_regular"
+                        android:gravity="start|center_vertical"
+                        android:text="example@dtu.ac.in"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAlternateEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llThree">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:src="@drawable/email_icon"
+                        app:tint="#980000" />
+
+                    <TextView
+                        android:id="@+id/tvAlternateEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/google_sans_regular"
+                        android:gravity="start|center_vertical"
+                        android:text="example@dtu.ac.in"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13sdp" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <View
+            android:id="@+id/separator_two"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:background="#E4E4E4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cdcontainerProfessorContacts" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cdQualification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:animateLayoutChanges="true"
+            app:cardBackgroundColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/separator_two"
+            app:rippleColor="@android:color/transparent"
+            app:strokeColor="@color/color_one_dark_one"
+            app:strokeWidth="1dp">
+
+            <!-- This is a ConstraintLayout for the entire CardView including the expandable portion -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clContainerQualification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_5sdp">
+
+                <!-- This is a ConstraintLayout for the fixed portion of the CardView. The elements that
+                lie within the fixed portion of the CardView can be constrained to this layout -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clQualificationFixedLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <ImageView
+                        android:id="@+id/ivQualificationIcon"
+                        android:layout_width="@dimen/_23sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:src="@drawable/graduation_icon"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/color_one_dark_one" />
+
+                    <TextView
+                        android:id="@+id/tvProfessorQualificationTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:fontFamily="@font/google_sans_medium"
+                        android:gravity="start"
+                        android:text="@string/qualifications"
+                        android:textColor="@color/color_one_dark_one"
+                        android:textSize="@dimen/_17ssp"
+                        app:layout_constraintBottom_toBottomOf="@id/ivQualificationIcon"
+                        app:layout_constraintEnd_toStartOf="@id/clQualificationExtensionIcon"
+                        app:layout_constraintStart_toEndOf="@id/ivQualificationIcon"
+                        app:layout_constraintTop_toTopOf="@id/ivQualificationIcon" />
+                    <!-- This is ImageButton for the expansion icon -->
+                    <ImageView
+                        android:id="@+id/clQualificationExtensionIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/expand_qualification"
+                        android:src="@drawable/arrow_right"
+                        app:layout_constraintBottom_toBottomOf="@id/tvProfessorQualificationTitle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvProfessorQualificationTitle"
+                        app:tint="@color/color_one_dark_one" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- The following is the expandable portion whose visibility is initially set to 'gone'
+                The parent LinearLayout contains 3 child LinearLayouts that hold a subject name and an icon each -->
+                <LinearLayout
+                    android:id="@+id/llQualificationHiddenView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/clQualificationFixedLayout"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/tvProfessorQualification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/google_sans_regular"
+                        android:gravity="start"
+                        android:text="Gradution- M.D.U Rohtak, Diploma in Sports Coaching- Football (NSEC Kolkata), D-Licence (Coach)"
+                        android:textColor="@color/color_one_dark_one"
+                        android:textSize="@dimen/_14sdp" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cdSpecialisation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:animateLayoutChanges="true"
+            app:cardBackgroundColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cdQualification"
+            app:rippleColor="@android:color/transparent"
+            app:strokeColor="@color/color_one_dark_one"
+            app:strokeWidth="1dp">
+
+            <!-- This is a ConstraintLayout for the entire CardView including the expandable portion -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_5sdp">
+
+                <!-- This is a ConstraintLayout for the fixed portion of the CardView. The elements that
+                lie within the fixed portion of the CardView can be constrained to this layout -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clSpecialisationFixedLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <ImageView
+                        android:id="@+id/ivSpecialisationIcon"
+                        android:layout_width="@dimen/_23sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:src="@drawable/expert_icon"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/color_one_dark_one" />
+
+                    <TextView
+                        android:id="@+id/tvProfessorSpecialisationTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:fontFamily="@font/google_sans_medium"
+                        android:gravity="start"
+                        android:text="@string/specialization"
+                        android:textColor="@color/color_one_dark_one"
+                        android:textSize="@dimen/_17ssp"
+                        app:layout_constraintBottom_toBottomOf="@id/ivSpecialisationIcon"
+                        app:layout_constraintEnd_toStartOf="@id/clSpecialisationExtensionIcon"
+                        app:layout_constraintStart_toEndOf="@id/ivSpecialisationIcon"
+                        app:layout_constraintTop_toTopOf="@id/ivSpecialisationIcon" />
+                    <!-- This is ImageButton for the expansion icon -->
+                    <ImageView
+                        android:id="@+id/clSpecialisationExtensionIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/expand_specialisation"
+                        android:src="@drawable/arrow_right"
+                        app:layout_constraintBottom_toBottomOf="@id/tvProfessorSpecialisationTitle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvProfessorSpecialisationTitle"
+                        app:tint="@color/color_one_dark_one" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- The following is the expandable portion whose visibility is initially set to 'gone'
+                The parent LinearLayout contains 3 child LinearLayouts that hold a subject name and an icon each -->
+                <LinearLayout
+                    android:id="@+id/llSpecialisationHiddenView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/clSpecialisationFixedLayout"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/tvProfessorSpecialisation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/google_sans_regular"
+                        android:gravity="start"
+                        android:text="@string/specialisation_holder_text"
+                        android:textColor="@color/color_one_dark_one"
+                        android:textSize="@dimen/_14sdp" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

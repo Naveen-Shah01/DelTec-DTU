@@ -1,10 +1,12 @@
 package com.dtu.deltecdtu.repository
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.dtu.deltecdtu.util.Response
 import com.dtu.deltecdtu.util.Utility
 import com.dtu.deltecdtu.model.ExtendedNoticeModel
 import com.dtu.deltecdtu.model.FirebaseDTUNewsModel
+import com.dtu.deltecdtu.model.ModelFaculty
 import com.dtu.deltecdtu.model.ModelHoliday
 import com.dtu.deltecdtu.model.NoticeModel
 import com.dtu.deltecdtu.model.SubList
@@ -91,6 +93,67 @@ class MainRepository {
             override fun onCancelled(error: DatabaseError) {
                 holidaysLiveData2024.postValue(Response.Error("$error"))
                 holidaysLiveData2023.postValue(Response.Error("$error"))
+            }
+        })
+    }
+
+    fun fetchFaculties(
+        facultyLiveData: MutableLiveData<Response<List<ModelFaculty>>>, path: String
+    ) {
+        val facultyReference = database.getReference(path)
+        facultyReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val facultyList = mutableListOf<ModelFaculty>()
+                for (ds in snapshot.children) {
+                    val key = ds.key?.toInt()
+                    val categoryId = ds.child("categoryId").getValue(Int::class.java)
+                    val name = ds.child("name").getValue(String::class.java)
+                    val designation = ds.child("designation").getValue(String::class.java)
+                    // Check if the fields exist in the database snapshot before assigning
+                    val specialization =
+                        if (ds.hasChild("specialization")) ds.child("specialization")
+                            .getValue(String::class.java) else null
+                    val hierarchy = if (ds.hasChild("hierarchy")) ds.child("hierarchy")
+                        .getValue(String::class.java) else null
+                    val department = if (ds.hasChild("department")) ds.child("department")
+                        .getValue(String::class.java) else null
+                    val qualification = if (ds.hasChild("qualification")) ds.child("qualification")
+                        .getValue(String::class.java) else null
+                    val email = if (ds.hasChild("email")) ds.child("email")
+                        .getValue(String::class.java) else null
+                    val phone = if (ds.hasChild("phone")) ds.child("phone")
+                        .getValue(Long::class.java) else null
+                    val alternatePhone =
+                        if (ds.hasChild("alternatePhone")) ds.child("alternatePhone")
+                            .getValue(Long::class.java) else null
+                    val alternateEmail =
+                        if (ds.hasChild("alternateEmail")) ds.child("alternateEmail")
+                            .getValue(String::class.java) else null
+                    val profImageUrl = if (ds.hasChild("profImageUrl")) ds.child("profImageUrl")
+                        .getValue(String::class.java) else null
+
+                    val faculty = ModelFaculty(
+                        key,
+                        categoryId,
+                        designation,
+                        hierarchy,
+                        department,
+                        qualification,
+                        specialization,
+                        email,
+                        phone,
+                        alternatePhone,
+                        alternateEmail,
+                        name,
+                        profImageUrl
+                    )
+                    facultyList.add(faculty)
+                }
+                facultyLiveData.postValue(Response.Success(facultyList))
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                facultyLiveData.postValue(Response.Error("$error"))
             }
         })
     }

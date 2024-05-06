@@ -19,7 +19,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import timber.log.Timber
 
 
 class AndroidDownloader(private val context: Context) : Downloader {
@@ -33,7 +32,6 @@ class AndroidDownloader(private val context: Context) : Downloader {
 
         val fileName = Utility.getFileNameFromUrl(url)
         val mimeType = Utility.getMimeType(url)
-        Timber.tag(DOWNLOAD_TAG).e("downloading $fileName")
         val request = DownloadManager.Request(Uri.parse(url))
             .setMimeType(mimeType)
             .setTitle(fileName)
@@ -46,7 +44,6 @@ class AndroidDownloader(private val context: Context) : Downloader {
                 fileName
             )
         val downloadId = downloadManager.enqueue(request)
-        Timber.tag(DOWNLOAD_TAG).e("downloadId is $downloadId")
         checkStatus(downloadId, url, position, subListAdapter)
 
         return downloadId
@@ -54,7 +51,6 @@ class AndroidDownloader(private val context: Context) : Downloader {
 
     fun downloadPdf(url: String, fileName: String): Long {
         val mimeType = Utility.getMimeType(url)
-        Timber.tag(DOWNLOAD_TAG).e("downloading $fileName")
         val request = DownloadManager.Request(Uri.parse(url))
             .setMimeType(mimeType)
             .setTitle(fileName)
@@ -67,7 +63,6 @@ class AndroidDownloader(private val context: Context) : Downloader {
                 fileName
             )
         val downloadId = downloadManager.enqueue(request)
-        Timber.tag(DOWNLOAD_TAG).e("downloadId is $downloadId")
         return downloadId
     }
 
@@ -85,8 +80,6 @@ class AndroidDownloader(private val context: Context) : Downloader {
             val status = run(downloadId)
             if (status == DOWNLOAD_SUCCESS) {
                 val type = subListAdapter.noticesList[position].type
-                Timber.tag(DOWNLOAD_TAG).e("in coroutines type is $type")
-
                 subListAdapter.noticesList[position].isDownloaded = true
                 withContext(Dispatchers.Main) {
                     val bitmap = Utility.generateBitmap(context, url, type)
@@ -112,17 +105,8 @@ class AndroidDownloader(private val context: Context) : Downloader {
         position: Int,
         dtuNoticeAdapter: DTUNoticeAdapter
     ): Long {
-
-        Timber.tag(DOWNLOAD_TAG).e("Download clicked")
-        Timber.tag(DOWNLOAD_TAG).e("url: $url")
-        Timber.tag(DOWNLOAD_TAG).e("position $position")
-        Timber.tag(DOWNLOAD_TAG).e("adapter $dtuNoticeAdapter")
-
         val fileName = Utility.getFileNameFromUrl(url)
         val mimeType = Utility.getMimeType(url)
-
-        Timber.tag(DOWNLOAD_TAG).e("file name: $fileName")
-        Timber.tag(DOWNLOAD_TAG).e("Mimetype: $mimeType")
         val request = DownloadManager.Request(Uri.parse(url))
             .setMimeType(mimeType)
             .setTitle(fileName)
@@ -144,30 +128,19 @@ class AndroidDownloader(private val context: Context) : Downloader {
     private fun callForStatus(
         downloadId: Long, url: String, position: Int, dtuNoticeAdapter: DTUNoticeAdapter
     ) {
-        Timber.tag(DOWNLOAD_TAG).e("status called")
-        Timber.tag(DOWNLOAD_TAG).e("url: $url")
-        Timber.tag(DOWNLOAD_TAG).e("position $position")
-        Timber.tag(DOWNLOAD_TAG).e("adapter $dtuNoticeAdapter")
-        Timber.tag(DOWNLOAD_TAG).e("download id: $downloadId")
-
         query = DownloadManager.Query()
         query.setFilterById(downloadId)
 
         CoroutineScope(Dispatchers.IO).launch {
             val status = run(downloadId)
             if (status == DOWNLOAD_SUCCESS) {
-                Timber.tag(DOWNLOAD_TAG).e("in coroutines Success")
                 val type = dtuNoticeAdapter.noticesList[position].type
-                Timber.tag(DOWNLOAD_TAG).e("in coroutines type is $type")
                 dtuNoticeAdapter.noticesList[position].isDownloaded = true
-                Timber.tag(DOWNLOAD_TAG).e("in coroutines isDownloaded is True")
-
                 withContext(Dispatchers.Main) {
                     val bitmap = Utility.generateBitmap(context, url, type)
                     if (bitmap != null) {
                         dtuNoticeAdapter.noticesList[position].bitmap = bitmap
                         dtuNoticeAdapter.notifyItemChanged(position)
-                        Timber.tag(DOWNLOAD_TAG).e("in coroutines Adapter updated")
                     }
                 }
 
@@ -193,7 +166,6 @@ class AndroidDownloader(private val context: Context) : Downloader {
                         cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR))
                     when (downloadStatus) {
                         DownloadManager.STATUS_SUCCESSFUL -> {
-                            Timber.tag(DOWNLOAD_TAG).e("Download in run Downloaded")
                             return DOWNLOAD_SUCCESS
                         }
 
@@ -202,7 +174,6 @@ class AndroidDownloader(private val context: Context) : Downloader {
                         }
 
                         else -> {
-                            Timber.tag(DOWNLOAD_TAG).e("Download in run running")
                             val downloadProgress = bytesDownloadSoFar * 100L / totalBytes
                         }
                     }

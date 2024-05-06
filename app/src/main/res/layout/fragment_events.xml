@@ -5,7 +5,7 @@
     android:id="@+id/eventsFragmentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.notices.EventsFragment">
+    tools:context=".ui.fragments.notices.EventsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvEventsFragmentRecyclerView"
